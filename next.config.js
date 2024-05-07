@@ -4,8 +4,9 @@ const nextConfig = {
     serverActions: true,
   },
   images: {
-    domains: ['fmliqecnrxgzwvucipeu.supabase.co'],
+    domains: ['vwrjiupnanygmmkzjnub.supabase.co'],
   },
 };
 
 module.exports = nextConfig;
+// console.log('Environment Variable Check:', process.env.VARIABLE_NAME);

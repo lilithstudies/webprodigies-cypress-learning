@@ -89,7 +89,7 @@ body {
 }
 
 .ce-popover-item__title {
-  @apply dark:text-Neutrals/neutrals-7 font-normal;
+  @apply dark:text-gray-700 font-normal;
 }
 
 .cdx-search-field {
@@ -104,11 +104,6 @@ body {
 .editorFocus {
   @apply border-none outline-none;
 }
-
-/* .dotPattern {
-  background-image: radial-gradient(rgb(25, 25, 25) 1px, transparent 1px);
-  background-size: 30px 30px;
-} */
 
 .ql-toolbar::-webkit-scrollbar {
   display: none;
@@ -129,5 +124,5 @@ body {
 .ql-editor > p,
 ol,
 ul {
-  @apply dark:text-washed-purple-700;
+  @apply dark:text-gray-700;
 }
