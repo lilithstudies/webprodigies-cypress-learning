@@ -1,8 +1,8 @@
 {
+  "id": "0185b88a-40f6-4510-bde7-90dd6eef6995",
+  "prevId": "3be74a72-181b-4561-89a5-6e5d18bedd64",
   "version": "5",
   "dialect": "pg",
-  "id": "64d8059e-e381-428d-9ef5-7689974485ad",
-  "prevId": "cec1cc2d-0f89-49e1-8cb8-7054c7e2fc74",
   "tables": {
     "files": {
       "name": "files",
@@ -20,6 +20,12 @@
           "type": "timestamp with time zone",
           "primaryKey": false,
           "notNull": false
+        },
+        "workspace_owner": {
+          "name": "workspace_owner",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
         },
         "title": {
           "name": "title",
@@ -118,6 +124,12 @@
           "type": "timestamp with time zone",
           "primaryKey": false,
           "notNull": false
+        },
+        "workspace_owner": {
+          "name": "workspace_owner",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
         },
         "title": {
           "name": "title",

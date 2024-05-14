@@ -1,8 +1,8 @@
-import client1 from '../../public/client1.png';
-import client2 from '../../public/client2.png';
-import client3 from '../../public/client3.png';
-import client4 from '../../public/client4.png';
-import client5 from '../../public/client5.png';
+import client1 from '../../public/client1.png'
+import client2 from '../../public/client2.png'
+import client3 from '../../public/client3.png'
+import client4 from '../../public/client4.png'
+import client5 from '../../public/client5.png'
 
 export const CLIENTS = [
   { alt: 'client1', logo: client1 },
@@ -10,7 +10,7 @@ export const CLIENTS = [
   { alt: 'client3', logo: client3 },
   { alt: 'client4', logo: client4 },
   { alt: 'client5', logo: client5 },
-];
+]
 
 export const USERS = [
   {
@@ -108,7 +108,7 @@ export const USERS = [
     message:
       'Cypress is a fantastic tool that has revolutionized our workflow. Our productivity and collaboration have reached new heights.',
   },
-];
+]
 
 export const PRICING_CARDS = [
   {
@@ -116,7 +116,7 @@ export const PRICING_CARDS = [
     price: '0',
     description: 'Limited block trials  for teams',
     highlightFeature: '',
-    freatures: [
+    features: [
       'Unlimited blocks for teams',
       'Unlimited file uploads',
       '30 day page history',
@@ -128,16 +128,15 @@ export const PRICING_CARDS = [
     price: '12.99',
     description: 'Billed annually. $17 billed monthly',
     highlightFeature: 'Everything in free +',
-    freatures: [
+    features: [
       'Unlimited blocks for teams',
       'Unlimited file uploads',
       '1 year day page history',
       'Invite 10 guests',
     ],
   },
-];
+]
 
-export const PRICING_PLANS = { proplan: 'Pro Plan', freeplan: 'Free Plan' };
+export const PRICING_PLANS = { proplan: 'Pro Plan', freeplan: 'Free Plan' }
 
-export const MAX_FOLDERS_FREE_PLAN = 3;
-
+export const MAX_FOLDERS_FREE_PLAN = 3

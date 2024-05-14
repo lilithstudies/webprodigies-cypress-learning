@@ -1,4 +1,4 @@
-import { relations, sql } from 'drizzle-orm';
+import { relations, sql } from 'drizzle-orm'
 import {
   boolean,
   integer,
@@ -7,13 +7,13 @@ import {
   text,
   timestamp,
   uuid,
-} from 'drizzle-orm/pg-core';
+} from 'drizzle-orm/pg-core'
 import {
   prices,
   products,
   subscriptionStatus,
   users,
-} from '../../../migrations/schema';
+} from '../../../migrations/schema'
 
 export const workspaces = pgTable('workspaces', {
   id: uuid('id').defaultRandom().primaryKey().notNull(),
@@ -30,7 +30,7 @@ export const workspaces = pgTable('workspaces', {
   inTrash: text('in_trash'),
   logo: text('logo'),
   bannerUrl: text('banner_url'),
-});
+})
 
 export const folders = pgTable('folders', {
   id: uuid('id').defaultRandom().primaryKey().notNull(),
@@ -50,7 +50,7 @@ export const folders = pgTable('folders', {
     .references(() => workspaces.id, {
       onDelete: 'cascade',
     }),
-});
+})
 
 export const files = pgTable('files', {
   id: uuid('id').defaultRandom().primaryKey().notNull(),
@@ -75,7 +75,7 @@ export const files = pgTable('files', {
     .references(() => folders.id, {
       onDelete: 'cascade',
     }),
-});
+})
 
 export const subscriptions = pgTable('subscriptions', {
   id: text('id').primaryKey().notNull(),
@@ -120,7 +120,7 @@ export const subscriptions = pgTable('subscriptions', {
     withTimezone: true,
     mode: 'string',
   }).default(sql`now()`),
-});
+})
 
 export const collaborators = pgTable('collaborators', {
   id: uuid('id').defaultRandom().primaryKey().notNull(),
@@ -136,16 +136,16 @@ export const collaborators = pgTable('collaborators', {
   userId: uuid('user_id')
     .notNull()
     .references(() => users.id, { onDelete: 'cascade' }),
-});
+})
 
 //Dont Delete!!!
 export const productsRelations = relations(products, ({ many }) => ({
   prices: many(prices),
-}));
+}))
 
 export const pricesRelations = relations(prices, ({ one }) => ({
   product: one(products, {
     fields: [prices.productId],
     references: [products.id],
   }),
-}));
+}))

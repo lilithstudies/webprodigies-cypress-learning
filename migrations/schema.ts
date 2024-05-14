@@ -9,15 +9,15 @@ import {
   boolean,
   bigint,
   integer,
-} from 'drizzle-orm/pg-core';
+} from 'drizzle-orm/pg-core'
 
-import { relations, sql } from 'drizzle-orm';
+import { relations, sql } from 'drizzle-orm'
 export const keyStatus = pgEnum('key_status', [
   'expired',
   'invalid',
   'valid',
   'default',
-]);
+])
 export const keyType = pgEnum('key_type', [
   'stream_xchacha20',
   'secretstream',
@@ -30,21 +30,21 @@ export const keyType = pgEnum('key_type', [
   'hmacsha512',
   'aead-det',
   'aead-ietf',
-]);
-export const factorStatus = pgEnum('factor_status', ['verified', 'unverified']);
-export const factorType = pgEnum('factor_type', ['webauthn', 'totp']);
-export const aalLevel = pgEnum('aal_level', ['aal3', 'aal2', 'aal1']);
+])
+export const factorStatus = pgEnum('factor_status', ['verified', 'unverified'])
+export const factorType = pgEnum('factor_type', ['webauthn', 'totp'])
+export const aalLevel = pgEnum('aal_level', ['aal3', 'aal2', 'aal1'])
 export const codeChallengeMethod = pgEnum('code_challenge_method', [
   'plain',
   's256',
-]);
-export const pricingType = pgEnum('pricing_type', ['recurring', 'one_time']);
+])
+export const pricingType = pgEnum('pricing_type', ['recurring', 'one_time'])
 export const pricingPlanInterval = pgEnum('pricing_plan_interval', [
   'year',
   'month',
   'week',
   'day',
-]);
+])
 export const subscriptionStatus = pgEnum('subscription_status', [
   'unpaid',
   'past_due',
@@ -53,7 +53,7 @@ export const subscriptionStatus = pgEnum('subscription_status', [
   'canceled',
   'active',
   'trialing',
-]);
+])
 export const equalityOp = pgEnum('equality_op', [
   'in',
   'gte',
@@ -62,14 +62,14 @@ export const equalityOp = pgEnum('equality_op', [
   'lt',
   'neq',
   'eq',
-]);
+])
 export const action = pgEnum('action', [
   'ERROR',
   'TRUNCATE',
   'DELETE',
   'UPDATE',
   'INSERT',
-]);
+])
 
 export const workspaces = pgTable('workspaces', {
   id: uuid('id').defaultRandom().primaryKey().notNull(),
@@ -83,7 +83,7 @@ export const workspaces = pgTable('workspaces', {
   inTrash: text('in_trash'),
   logo: text('logo'),
   bannerUrl: text('banner_url'),
-});
+})
 
 export const folders = pgTable('folders', {
   id: uuid('id').defaultRandom().primaryKey().notNull(),
@@ -98,7 +98,7 @@ export const folders = pgTable('folders', {
   workspaceId: uuid('workspace_id')
     .notNull()
     .references(() => workspaces.id, { onDelete: 'cascade' }),
-});
+})
 
 export const files = pgTable('files', {
   id: uuid('id').defaultRandom().primaryKey().notNull(),
@@ -116,7 +116,7 @@ export const files = pgTable('files', {
   folderId: uuid('folder_id')
     .notNull()
     .references(() => folders.id, { onDelete: 'cascade' }),
-});
+})
 
 export const users = pgTable('users', {
   id: uuid('id').primaryKey().notNull(),
@@ -126,12 +126,12 @@ export const users = pgTable('users', {
   updatedAt: timestamp('updated_at', { withTimezone: true, mode: 'string' }),
   paymentMethod: jsonb('payment_method'),
   email: text('email'),
-});
+})
 
 export const customers = pgTable('customers', {
   id: uuid('id').primaryKey().notNull(),
   stripeCustomerId: text('stripe_customer_id'),
-});
+})
 
 export const prices = pgTable('prices', {
   id: text('id').primaryKey().notNull(),
@@ -146,7 +146,7 @@ export const prices = pgTable('prices', {
   intervalCount: integer('interval_count'),
   trialPeriodDays: integer('trial_period_days'),
   metadata: jsonb('metadata'),
-});
+})
 
 export const products = pgTable('products', {
   id: text('id').primaryKey().notNull(),
@@ -155,7 +155,7 @@ export const products = pgTable('products', {
   description: text('description'),
   image: text('image'),
   metadata: jsonb('metadata'),
-});
+})
 
 export const subscriptions = pgTable('subscriptions', {
   id: text('id').primaryKey().notNull(),
@@ -200,7 +200,7 @@ export const subscriptions = pgTable('subscriptions', {
     withTimezone: true,
     mode: 'string',
   }).default(sql`now()`),
-});
+})
 
 export const collaborators = pgTable('collaborators', {
   workspaceId: uuid('workspace_id')
@@ -213,15 +213,15 @@ export const collaborators = pgTable('collaborators', {
     .notNull()
     .references(() => users.id, { onDelete: 'cascade' }),
   id: uuid('id').defaultRandom().primaryKey().notNull(),
-});
+})
 
 export const productsRelations = relations(products, ({ many }) => ({
   prices: many(prices),
-}));
+}))
 
 export const pricesRelations = relations(prices, ({ one }) => ({
   product: one(products, {
     fields: [prices.productId],
     references: [products.id],
   }),
-}));
+}))
